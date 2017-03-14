@@ -1,6 +1,6 @@
 # Laravel Boilerplate Generator Commands
 
-Generate Model, attribute, relation, scope trait and repository for [Laravel Boilerplate](rappasoft/laravel-5-boilerplate) via console command
+Generate Model, attribute, relation, scope trait and repository for [Laravel 5 Boilerplate](https://github.com/rappasoft/laravel-5-boilerplate) via console command
 
 ## Install (Laravel Boilerplate 5.4)
 
@@ -11,7 +11,6 @@ composer require --dev hariadi/laravel-boilerplate-generator
 Register service provider by adding to your `config/app.php`:
 
 ```php
-...
 Hariadi\Boilerplate\GeneratorCommandServiceProvider::class,
 ```
 If you want this lib only for dev, you can add the following code to your `app/Providers/AppServiceProvider.php` file, within the `register()` method:
@@ -19,7 +18,6 @@ If you want this lib only for dev, you can add the following code to your `app/P
 public function register()
 {
     if ($this->app->environment() !== 'production') {
-    	// ...
         $this->app->register(\Hariadi\Boilerplate\GeneratorCommandServiceProvider::class);
     }
     // ...
@@ -50,7 +48,7 @@ You must see:
 ```bash
 php artisan app:model ModelName
 ```
-This will generate `ModelName.php` under `Models` directory, and traits for `ModelNameAttribute`, `ModelNameRelation`, `ModelNameScope` under Traits directory.
+This will generate `ModelName.php` under `Models` directory, and traits for `ModelNameAttribute`, `ModelNameRelation`, `ModelNameScope` under `Models\ModelName\Traits` directory.
 
 ###Generate Attribute
 

@@ -1,0 +1,11 @@
+<?php
+
+namespace {{namespace}};
+
+/**
+ * Class {{class}}
+ */
+trait {{class}}
+{
+    //
+}

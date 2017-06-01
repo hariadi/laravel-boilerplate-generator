@@ -52,9 +52,7 @@ class AppRepositoryCommand extends AppGeneratorCommand
      */
     public function handle()
     {
-        if (parent::handle() !== false) {
-            $this->call('app:contract', ['name' => $this->argument('name')]);
-        }
+        parent::handle();
     }
 
     /**

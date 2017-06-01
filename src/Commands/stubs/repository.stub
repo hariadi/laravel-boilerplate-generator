@@ -3,10 +3,22 @@
 namespace {{namespace}};
 
 use App\Models\{{model}}\{{model}};
+use Illuminate\Support\Facades\DB;
+use App\Repositories\BaseRepository;
 use App\Exceptions\GeneralException;
+use Illuminate\Database\Eloquent\Model;
 
-class {{class}} implements {{model}}RepositoryContract
+class {{class}} extends BaseRepository
 {
+	/**
+     * Associated Repository Model.
+     */
+    const MODEL = {{model}}::class;
+
+    /**
+     * @return mixed
+     */
+    public function getForDataTable() {}
 
 {{all}}    /**
      * Get all instance of {{model}}.

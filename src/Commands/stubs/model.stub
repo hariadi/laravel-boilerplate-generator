@@ -3,7 +3,7 @@
 namespace {{namespace}};
 
 use Illuminate\Database\Eloquent\Model;
-use {{namespace}}\Traits\Attribute\{{class}}Scope;
+use {{namespace}}\Traits\Scope\{{class}}Scope;
 use {{namespace}}\Traits\Attribute\{{class}}Attribute;
 use {{namespace}}\Traits\Relationship\{{class}}Relationship;
 

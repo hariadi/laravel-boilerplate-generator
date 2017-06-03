@@ -43,36 +43,40 @@ You must see:
 
 ## Usage
 
-###Generate Model
+### Generate Model
 
 ```bash
 php artisan app:model ModelName
 ```
-This will generate `ModelName.php` under `Models` directory, and traits for `ModelNameAttribute`, `ModelNameRelation`, `ModelNameScope` under `Models\ModelName\Traits` directory.
+Generate `ModelName.php` under `Models` directory, and traits for `ModelNameAttribute`, `ModelNameRelationship`, `ModelNameScope` under `Models\ModelName\Traits` directory.
 
-###Generate Attribute
-
-```bash
-php artisan app:attribute
-```
-
-###Generate Relation
+### Generate Attribute
 
 ```bash
-php artisan app:relation
+php artisan app:attribute ModelName
 ```
+Generate `ModelNameAttribute.php` under `Models/Traits/Attribute` directory.
 
-###Generate Scope
+### Generate Relation
 
 ```bash
-php artisan app:scope
+php artisan app:relation ModelName
 ```
+Generate `ModelNameRelationship.php` under `Models/Traits/Relationship` directory.
 
-###Generate Repository
+### Generate Scope
 
 ```bash
-php artisan app:repository
+php artisan app:scope ModelName
 ```
+Generate `ModelNameScope.php` under `Models/Traits/Scope` directory.
+
+### Generate Repository
+
+```bash
+php artisan app:repository Backend/ModelName
+```
+Generate `ModelNameRepository.php` under `app/Repositories/Event` directory.
 
 ## License
 

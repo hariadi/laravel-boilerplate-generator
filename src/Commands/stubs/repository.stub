@@ -17,7 +17,10 @@ class {{class}} extends BaseRepository
     /**
      * @return mixed
      */
-    public function getForDataTable() {}
+    public function getForDataTable()
+    {
+    	//
+    }
 
 {{all}}    /**
      * Get all instance of {{model}}.
@@ -45,19 +48,19 @@ class {{class}} extends BaseRepository
      * Create a new instance of {{model}}.
      *
      * @param  array  $input
-     * @return bool
+     * @return object
      */
     public function create($input)
     {
         ${{variable}} = $this->create{{model}}Stub($input);
 
-        if (!${{variable}}->save()) {
+        if (${{variable}}->save()) {
+        	// event(new {{model}}Created(${{variable}}));
 
-            throw new GeneralException('There was a problem creating this {{variable}}. Please try again.');
+        	return ${{variable}};
         }
 
-        return ${{variable}};
-
+        throw new GeneralException('There was a problem creating this {{variable}}. Please try again.');
     }
 {{/create}}
 {{update}}    /**
@@ -67,17 +70,17 @@ class {{class}} extends BaseRepository
      * @param  array  $input
      * @return bool|int
      */
-    public function update($id, $input)
+    public function update(Model ${{variable}}, array $input)
     {
-        ${{variable}} = $this->findOrThrowException($id);
+        ${{variable}} = $this->createAgencyStub($input);
 
-        if (!${{variable}}->update($input)) {
-			throw new GeneralException('There was a problem updating this {{variable}}. Please try again.');
-        }
+        if (${{variable}}->save()) {
+    		//event(new {{model}}Updated(${{variable}}));
 
-        return ${{variable}};
+    		return ${{variable}};
+    	}
 
-
+        throw new GeneralException('There was a problem updating this {{variable}}. Please try again.');
     }
 {{/update}}
 {{delete}}    /**
@@ -85,16 +88,15 @@ class {{class}} extends BaseRepository
      * @throws GeneralException
      * @return boolean|null
      */
-    public function destroy($id)
+    public function destroy(Model ${{variable}})
     {
-        ${{variable}} = $this->findOrThrowException($id);
+        if (${{variable}}->delete()) {
+            //event(new {{model}}Deleted(${{variable}}));
 
-        if (!${{variable}}->delete()) {
-        	throw new GeneralException('There was a problem deleting this {{variable}}. Please try again.');
+            return true;
         }
 
-        return true;
-
+        throw new GeneralException('There was a problem deleting this {{variable}}. Please try again.');
     }
 {{/delete}}
     /**
@@ -103,8 +105,13 @@ class {{class}} extends BaseRepository
      */
     private function create{{model}}Stub($input)
     {
-        ${{variable}}                    = new {{model}};
-        ${{variable}}->name              = $input['name'];
+    	${{variable}}  = new self::MODEL;
+
+        foreach (${{variable}}->getFillable() as $column) {
+        	if (array_key_exists($column, $input)) {
+        		${{variable}}->{$column} = $input[$column];
+        	}
+        }
 
         return ${{variable}};
     }

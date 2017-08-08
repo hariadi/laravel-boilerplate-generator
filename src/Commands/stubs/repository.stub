@@ -41,7 +41,7 @@ class {{class}} extends BaseRepository
      */
     public function get{{model}}sPaginated($per_page = 10, $order_by = 'id', $sort = 'asc')
     {
-        return $this->query()orderBy($order_by, $sort)->paginate($per_page);
+        return $this->query()->orderBy($order_by, $sort)->paginate($per_page);
     }
 {{/paginated}}
 {{create}}   /**

@@ -28,7 +28,7 @@ abstract class AppGeneratorCommand extends Command
      *
      * @var array
      */
-    protected $methods = ['all', 'paginated', 'find', 'create', 'update', 'delete'];
+    protected $methods = ['all', 'paginated', 'find', 'create', 'update', 'delete', 'forceDelete', 'restore'];
 
     /**
      * Create a new controller creator command instance.
@@ -186,6 +186,8 @@ abstract class AppGeneratorCommand extends Command
         foreach ($this->methods as $method) {
             $stub = preg_replace('/{{' . $method . '}}(.*){{\/' . $method . '}}(\r\n)?/s', '', $stub);
         }
+
+        $stub = preg_replace('#(\r\n?|\n){2,}#', '$1$1', $stub);
 
         return $stub;
     }

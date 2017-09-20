@@ -39,9 +39,11 @@ class {{class}} extends BaseRepository
      * @param  int         $status
      * @return mixed
      */
-    public function get{{model}}sPaginated($per_page = 10, $order_by = 'id', $sort = 'asc')
+    public function getPaginated($trashed = false, $per_page = 15, $order_by = 'id', $sort = 'asc')
     {
-        return $this->query()->orderBy($order_by, $sort)->paginate($per_page);
+    	$query = $trashed ? $this->query()->onlyTrashed() : $this->query();
+
+        return $query->orderBy($order_by, $sort)->paginate($per_page);
     }
 {{/paginated}}
 {{create}}   /**
@@ -91,12 +93,44 @@ class {{class}} extends BaseRepository
         if (${{variable}}->delete()) {
             //event(new {{model}}Deleted(${{variable}}));
 
-            return true;
+            return ${{variable}};
         }
 
         throw new GeneralException('There was a problem deleting this {{variable}}. Please try again.');
     }
 {{/delete}}
+{{forceDelete}}    /**
+     * @param  $id
+     * @throws GeneralException
+     * @return boolean|null
+     */
+    public function delete(Model ${{variable}})
+    {
+        if (${{variable}}->forceDelete()) {
+            //event(new {{model}}Destroyed(${{variable}}));
+
+            return ${{variable}};
+        }
+
+        throw new GeneralException('There was a problem deleting this {{variable}}. Please try again.');
+    }
+{{/forceDelete}}
+{{restore}}    /**
+     * @param  $id
+     * @throws GeneralException
+     * @return boolean|null
+     */
+    public function restore(Model ${{variable}})
+    {
+        if (${{variable}}->restore()) {
+            //event(new {{model}}Restored(${{variable}}));
+
+            return ${{variable}};
+        }
+
+        throw new GeneralException('There was a problem restoring this {{variable}}. Please try again.');
+    }
+{{/restore}}
     /**
      * @param  $input
      * @return mixed
@@ -106,6 +140,7 @@ class {{class}} extends BaseRepository
         ${{variable}} = self::MODEL;
         ${{variable}} = new ${{variable}};
 
+        // You need to setup protected $fillable field on your model
         foreach (${{variable}}->getFillable() as $column) {
         	if (array_key_exists($column, $input)) {
         		${{variable}}->{$column} = $input[$column];

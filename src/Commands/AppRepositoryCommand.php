@@ -12,11 +12,20 @@ class AppRepositoryCommand extends AppGeneratorCommand
     protected $type = 'Repository';
 
     /**
+     * Default method of class being generated.
+     *
+     * @var array
+     */
+    protected $methods = ['all', 'paginated', 'find', 'create', 'update', 'delete', 'forceDelete', 'restore'];
+
+    /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'app:repository {name : The model class name.}';
+    protected $signature = 'app:repository
+    	{name : The model class name.}
+    	{--d|disable-softdelete : Disable softdelete}';
 
     /**
      * The console command description.
@@ -32,7 +41,9 @@ class AppRepositoryCommand extends AppGeneratorCommand
      */
     protected function getMethods()
     {
-        return ['all', 'paginated', 'find', 'create', 'update', 'delete'];
+        return $this->option('disable-softdelete')
+        	? array_diff($this->methods, ['forceDelete', 'restore'])
+        	: $this->methods;
     }
 
     /**
@@ -53,6 +64,8 @@ class AppRepositoryCommand extends AppGeneratorCommand
     public function handle()
     {
         parent::handle();
+
+
     }
 
     /**

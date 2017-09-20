@@ -73,6 +73,10 @@ Generate `ModelNameScope.php` under `Models/Traits/Scope` directory.
 
 ### Generate Repository
 
+**Options**
+
+* `-d|--disable-softdelete` : Disable softdelete method (`forceDelete` and `restore`)
+
 ```bash
 php artisan app:repository Backend/ModelName
 ```

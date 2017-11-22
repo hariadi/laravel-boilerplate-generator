@@ -35,6 +35,7 @@ You must see:
 ```bash
 	app
 	  app:attribute        Create a new attribute traits for model
+	  app:method           Create a new method traits for model
 	  app:model            Create a new Eloquent model class with attribute, relationship and scope traits
 	  app:relationship     Create a new relationship traits for model
 	  app:repository       Create a new repository class
@@ -56,6 +57,13 @@ Generate `ModelName.php` under `Models` directory, and traits for `ModelNameAttr
 php artisan app:attribute ModelName
 ```
 Generate `ModelNameAttribute.php` under `Models/Traits/Attribute` directory.
+
+### Generate Method
+
+```bash
+php artisan app:method ModelName
+```
+Generate `ModelNameMethod.php` under `Models/Traits/Method` directory.
 
 ### Generate Relation
 

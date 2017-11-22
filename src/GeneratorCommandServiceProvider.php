@@ -5,6 +5,7 @@ namespace Hariadi\Boilerplate;
 use Illuminate\Support\ServiceProvider;
 use Hariadi\Boilerplate\Commands\AppModelCommand;
 use Hariadi\Boilerplate\Commands\AppScopeCommand;
+use Hariadi\Boilerplate\Commands\AppMethodCommand;
 use Hariadi\Boilerplate\Commands\AppAttributeCommand;
 use Hariadi\Boilerplate\Commands\AppRepositoryCommand;
 use Hariadi\Boilerplate\Commands\AppRelationshipCommand;
@@ -39,6 +40,7 @@ class GeneratorCommandServiceProvider extends ServiceProvider
         $this->commands([
             AppModelCommand::class,
             AppScopeCommand::class,
+            AppMethodCommand::class,
             AppAttributeCommand::class,
             AppRepositoryCommand::class,
             AppRelationshipCommand::class,

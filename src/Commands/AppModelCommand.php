@@ -54,6 +54,7 @@ class AppModelCommand extends AppGeneratorCommand
     {
         if (parent::handle() !== false) {
             $this->call('app:attribute', ['name' => $this->argument('name')]);
+            $this->call('app:method', ['name' => $this->argument('name')]);
             $this->call('app:relationship', ['name' => $this->argument('name')]);
             $this->call('app:scope', ['name' => $this->argument('name')]);
         }

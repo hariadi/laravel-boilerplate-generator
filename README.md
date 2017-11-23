@@ -2,11 +2,17 @@
 
 Generate Model, attribute, relation, scope trait and repository for [Laravel 5 Boilerplate](https://github.com/rappasoft/laravel-5-boilerplate) via console command
 
-## Install (Laravel Boilerplate 5.4)
+## Install
 
 ```bash
 composer require --dev hariadi/laravel-boilerplate-generator
 ```
+
+###  Laravel 5.5
+
+Package already support auto discover and ready to use.
+
+###  Laravel 5.4
 
 Register service provider by adding to your `config/app.php`:
 

@@ -8,12 +8,12 @@
    convertWarningsToExceptions="true"
    processIsolation="false"
    stopOnFailure="false"
-   syntaxCheck="false"
    stderr="true"
 >
   <testsuites>
 	<testsuite name="Application Test Suite">
-	  <directory>tests</directory>
+	  <directory suffix=".php">./tests/</directory>
+	  <exclude>./tests/temp</exclude>
 	</testsuite>
   </testsuites>
   <filter>
@@ -21,4 +21,7 @@
 	  <directory suffix=".php">src</directory>
 	</whitelist>
   </filter>
+  	<php>
+        <env name="APP_KEY" value="BckfcECYIvnK5r28GvIWUcXMbBSqTsmG"/>
+	</php>
 </phpunit>

@@ -16,7 +16,9 @@ class AppScopeCommand extends AppGeneratorCommand
      *
      * @var string
      */
-    protected $signature = 'app:scope {name : The name of the class}';
+    protected $signature = 'app:scope
+    	{name : The name of the class}
+    	{--N|namespace= : The namespace class. Output strategy will follow this namespace}';
 
     /**
      * The console command description.
@@ -83,6 +85,7 @@ class AppScopeCommand extends AppGeneratorCommand
      */
     protected function getDefaultNamespace($rootNamespace)
     {
-        return $rootNamespace . '\Models' . '\\' . $this->argument('name') . '\Traits' .  '\\' . $this->type;
+    	$namespace = $this->option('namespace') ?? $this->argument('name');
+        return $rootNamespace . '\Models' . '\\' . $namespace . '\Traits' .  '\\' . $this->type;
     }
 }

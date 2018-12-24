@@ -8,7 +8,7 @@ Generate Model, attribute, relation, scope trait and repository for [Laravel 5 B
 composer require --dev hariadi/laravel-boilerplate-generator
 ```
 
-###  Laravel 5.5
+###  Laravel 5.7+
 
 Package already support auto discover and ready to use.
 
@@ -36,7 +36,7 @@ Show command list:
 php artisan list
 ```
 
-You must see:
+You will see:
 
 ```bash
 	app
@@ -52,12 +52,20 @@ You must see:
 
 ### Generate Model
 
+**Options**
+
+* `-N|--namespace` : The namespace class. Output strategy will follow this namespace
+
 ```bash
 php artisan app:model ModelName
 ```
 Generate `ModelName.php` under `Models` directory, and traits for `ModelNameAttribute`, `ModelNameRelationship`, `ModelNameScope` under `Models\ModelName\Traits` directory.
 
 ### Generate Attribute
+
+**Options**
+
+* `-N|--namespace` : The namespace class. Output strategy will follow this namespace
 
 ```bash
 php artisan app:attribute ModelName
@@ -66,6 +74,10 @@ Generate `ModelNameAttribute.php` under `Models/Traits/Attribute` directory.
 
 ### Generate Method
 
+**Options**
+
+* `-N|--namespace` : The namespace class. Output strategy will follow this namespace
+
 ```bash
 php artisan app:method ModelName
 ```
@@ -73,12 +85,20 @@ Generate `ModelNameMethod.php` under `Models/Traits/Method` directory.
 
 ### Generate Relation
 
+**Options**
+
+* `-N|--namespace` : The namespace class. Output strategy will follow this namespace
+
 ```bash
 php artisan app:relation ModelName
 ```
 Generate `ModelNameRelationship.php` under `Models/Traits/Relationship` directory.
 
 ### Generate Scope
+
+**Options**
+
+* `-N|--namespace` : The namespace class. Output strategy will follow this namespace
 
 ```bash
 php artisan app:scope ModelName
@@ -95,6 +115,71 @@ Generate `ModelNameScope.php` under `Models/Traits/Scope` directory.
 php artisan app:repository Backend/ModelName
 ```
 Generate `ModelNameRepository.php` under `app/Repositories/Event` directory.
+
+## Output strategy
+
+### Without `--namespace` option
+Example files and directories output:
+
+```bash
+php artisan app:model ModelName
+php artisan app:model AnotherModelName
+```
+
+```
+app/Models
+├── AnotherModelName
+│   ├── AnotherModelName.php
+│   └── Traits
+│       ├── Attribute
+│       │   └── AnotherModelNameAttribute.php
+│       ├── Method
+│       │   └── AnotherModelNameMethod.php
+│       ├── Relationship
+│       │   └── AnotherModelNameRelationship.php
+│       └── Scope
+│           └──AnotherModelNameScope.php
+└── ModelName
+    ├── ModelName.php
+    └── Traits
+        ├── Attribute
+        │   └── ModelNameAttribute.php
+        ├── Method
+        │   └── ModelNameMethod.php
+        ├── Relationship
+        │   └── ModelNameRelationship.php
+        └── Scope
+            └── ModelNameScope.php
+```
+
+### With `--namespace` option
+
+Generated combined in given namspace option. Example files and directories output:
+
+```bash
+php artisan app:model ModelName --namespace=Survey
+php artisan app:model AnotherModelName --namespace=Survey
+```
+
+```
+app/Models
+└── Survey
+    ├── ModelName.php
+    ├── AnotherModelName.php
+    └── Traits
+        ├── Attribute
+        │   ├── ModelNameAttribute.php
+        │   └── AnotherModelNameAttribute.php
+        ├── Method
+        │   ├── ModelNameMethod.php
+        │   └── AnotherModelNameMethod.php
+        ├── Relationship
+        │   ├── ModelNameRelationship.php
+        │   └── AnotherModelNameRelationship.php
+        └── Scope
+            ├── ModelNameScope.php
+            └── AnotherModelNameScope.php
+```
 
 ## License
 

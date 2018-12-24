@@ -71,7 +71,7 @@ abstract class AppGeneratorCommand extends Command
         if ($this->alreadyExists($this->getClassName())) {
             $this->error($this->type.' already exists!');
 
-            return false;
+            return;
         }
 
         $this->makeDirectory($path);
@@ -115,6 +115,10 @@ abstract class AppGeneratorCommand extends Command
     protected function getPath($name)
     {
         $name = str_replace($this->laravel->getNamespace(), '', $name);
+
+        if ($this->laravel->runningInConsole()) {
+    		return $this->laravel['config']['generator.path'].'/'.str_replace('\\', '/', $name).'.php';
+    	}
 
         return $this->laravel['path'].'/'.str_replace('\\', '/', $name).'.php';
     }
@@ -233,6 +237,16 @@ abstract class AppGeneratorCommand extends Command
     }
 
     /**
+     * Get the desired namespace class from the input.
+     *
+     * @return string
+     */
+    protected function getNamespaceInput()
+    {
+        return $this->option('namespace');
+    }
+
+    /**
      * Get the intended name for class.
      *
      * @return string
@@ -240,6 +254,16 @@ abstract class AppGeneratorCommand extends Command
     protected function getClassName()
     {
         return basename($this->getNameInput());
+    }
+
+    /**
+     * Get the intended name for class.
+     *
+     * @return string
+     */
+    protected function getNamespaceClassName()
+    {
+        return basename($this->getNamespaceInput());
     }
 
     /**

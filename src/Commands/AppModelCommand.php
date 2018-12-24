@@ -16,7 +16,9 @@ class AppModelCommand extends AppGeneratorCommand
      *
      * @var string
      */
-    protected $signature = 'app:model {name : The name of the class}';
+    protected $signature = 'app:model
+    	{name : The name of the class}
+    	{--N|namespace= : The namespace class. Output strategy will follow this namespace}';
 
     /**
      * The console command description.
@@ -53,10 +55,10 @@ class AppModelCommand extends AppGeneratorCommand
     public function handle()
     {
         if (parent::handle() !== false) {
-            $this->call('app:attribute', ['name' => $this->argument('name')]);
-            $this->call('app:method', ['name' => $this->argument('name')]);
-            $this->call('app:relationship', ['name' => $this->argument('name')]);
-            $this->call('app:scope', ['name' => $this->argument('name')]);
+            $this->call('app:attribute', ['name' => $this->argument('name'), '--namespace' => $this->option('namespace')]);
+            $this->call('app:method', ['name' => $this->argument('name'), '--namespace' => $this->option('namespace')]);
+            $this->call('app:relationship', ['name' => $this->argument('name'), '--namespace' => $this->option('namespace')]);
+            $this->call('app:scope', ['name' => $this->argument('name'), '--namespace' => $this->option('namespace')]);
         }
     }
 
@@ -68,6 +70,7 @@ class AppModelCommand extends AppGeneratorCommand
      */
     protected function getDefaultNamespace($rootNamespace)
     {
-        return $rootNamespace . '\Models' .'\\' . $this->argument('name');
+    	$namespace = $this->option('namespace') ?? $this->argument('name');
+        return $rootNamespace . '\Models' .'\\' . $namespace;
     }
 }

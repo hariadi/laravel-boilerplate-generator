@@ -117,8 +117,8 @@ abstract class AppGeneratorCommand extends Command
         $name = str_replace($this->laravel->getNamespace(), '', $name);
 
         if ($this->laravel->runningUnitTests()) {
-    		return $this->laravel['config']['generator.path'].'/'.str_replace('\\', '/', $name).'.php';
-    	}
+            return $this->laravel['config']['generator.path'].'/'.str_replace('\\', '/', $name).'.php';
+        }
 
         return $this->laravel['path'].'/'.str_replace('\\', '/', $name).'.php';
     }

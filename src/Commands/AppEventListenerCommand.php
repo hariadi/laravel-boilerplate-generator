@@ -2,30 +2,28 @@
 
 namespace Hariadi\Boilerplate\Commands;
 
-class AppRelationshipCommand extends AppGeneratorCommand
+class AppEventListenerCommand extends AppGeneratorCommand
 {
     /**
      * The type of class being generated.
      *
      * @var string
      */
-    protected $type = 'Relationship';
+    protected $type = 'EventListener';
 
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'app:relationship
-    	{name : The name of the class}
-    	{--N|namespace= : The namespace class. Output strategy will follow this namespace}';
+    protected $signature = 'app:listener {name : The name of the class}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Create a new relationship traits for model';
+    protected $description = 'Create a new event listener for model';
 
     /**
      * The methods available.
@@ -34,7 +32,7 @@ class AppRelationshipCommand extends AppGeneratorCommand
      */
     protected function getMethods()
     {
-        return ['all', 'paginated', 'find', 'create', 'update', 'delete'];
+        return ['created', 'updated', 'deleted'];
     }
 
     /**
@@ -44,7 +42,7 @@ class AppRelationshipCommand extends AppGeneratorCommand
      */
     protected function getStub()
     {
-        return __DIR__.'/stubs/relationship.stub';
+        return __DIR__.'/stubs/listener.stub';
     }
 
     /**
@@ -54,17 +52,15 @@ class AppRelationshipCommand extends AppGeneratorCommand
      */
     public function handle()
     {
-        parent::handle();
-    }
+    	// $event = $this->option('event');
 
-    /**
-     * Get the desired class name from the input.
-     *
-     * @return string
-     */
-    protected function getNameInput()
-    {
-        return $this->argument('name');
+     //    if ($event != 'created') {
+     //        $this->methods = [$event];
+     //    }
+
+     //    dd($this->methods);
+
+        parent::handle();
     }
 
     /**
@@ -85,7 +81,8 @@ class AppRelationshipCommand extends AppGeneratorCommand
      */
     protected function getDefaultNamespace($rootNamespace)
     {
-        $namespace = $this->option('namespace') ?? $this->argument('name');
-        return $rootNamespace . '\Models' . '\\' . $namespace . '\Traits' .  '\\' . $this->type;
+        $namespace = $this->argument('name');
+
+        return $rootNamespace . '\Listeners\Backend' . '\\' . $namespace;
     }
 }

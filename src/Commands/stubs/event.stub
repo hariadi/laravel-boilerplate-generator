@@ -1,0 +1,30 @@
+<?php
+
+namespace {{namespace}};
+
+use Illuminate\Queue\SerializesModels;
+use Illuminate\Foundation\Events\Dispatchable;
+
+/**
+ * Class {{class}}
+ */
+trait {{class}}
+{
+    use Dispatchable, SerializesModels;
+
+    /**
+     * @var
+     */
+    public ${{variable}};
+
+    /**
+     * Create a new event instance.
+     *
+     * @param \App\Models\MyKPI\Kpi $kpi [description]
+     * @return void
+     */
+    public function __construct(${{variable}})
+    {
+        $this->{{variable}} = ${{variable}};
+    }
+}

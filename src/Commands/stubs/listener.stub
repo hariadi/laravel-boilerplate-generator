@@ -1,0 +1,39 @@
+<?php
+
+use Illuminate\Support\Facades\Log;
+
+namespace {{namespace}};
+
+/**
+ * Class {{class}}
+ */
+class {{class}}
+{
+	{{created}}
+    /**
+     * @param $event
+     */
+    public function onCreated($event)
+    {
+        Log::info('{{model}} Created');
+    }
+    {{/created}}
+    {{updated}}
+    /**
+     * @param $event
+     */
+    public function onUpdated($event)
+    {
+        Log::info('{{model}} Updated');
+    }
+    {{updated}}
+    {{deleted}}
+    /**
+     * @param $event
+     */
+    public function onDeleted($event)
+    {
+        Log::info('{{model}} Deleted');
+    }
+    {{/deleted}}
+}

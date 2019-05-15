@@ -75,7 +75,7 @@ class AppMethodCommand extends AppGeneratorCommand
      */
     protected function getDefaultNamespace($rootNamespace)
     {
-    	$namespace = $this->option('namespace') ?? $this->argument('name');
+        $namespace = $this->option('namespace') ?? $this->argument('name');
         return $rootNamespace . '\Models' . '\\' . $namespace . '\Traits' .  '\\' . $this->type;
     }
 }

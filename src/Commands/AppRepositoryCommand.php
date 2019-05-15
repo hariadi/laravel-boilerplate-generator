@@ -42,8 +42,8 @@ class AppRepositoryCommand extends AppGeneratorCommand
     protected function getMethods()
     {
         return $this->option('disable-softdelete')
-        	? array_diff($this->methods, ['forceDelete', 'restore'])
-        	: $this->methods;
+            ? array_diff($this->methods, ['forceDelete', 'restore'])
+            : $this->methods;
     }
 
     /**
@@ -64,8 +64,6 @@ class AppRepositoryCommand extends AppGeneratorCommand
     public function handle()
     {
         parent::handle();
-
-
     }
 
     /**

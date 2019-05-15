@@ -55,10 +55,25 @@ class AppModelCommand extends AppGeneratorCommand
     public function handle()
     {
         if (parent::handle() !== false) {
-            $this->call('app:attribute', ['name' => $this->argument('name'), '--namespace' => $this->option('namespace')]);
-            $this->call('app:method', ['name' => $this->argument('name'), '--namespace' => $this->option('namespace')]);
-            $this->call('app:relationship', ['name' => $this->argument('name'), '--namespace' => $this->option('namespace')]);
-            $this->call('app:scope', ['name' => $this->argument('name'), '--namespace' => $this->option('namespace')]);
+            $this->call('app:attribute', [
+                'name' => $this->argument('name'),
+                '--namespace' => $this->option('namespace')
+            ]);
+
+            $this->call('app:method', [
+                'name' => $this->argument('name'),
+                '--namespace' => $this->option('namespace')
+            ]);
+
+            $this->call('app:relationship', [
+                'name' => $this->argument('name'),
+                '--namespace' => $this->option('namespace')
+            ]);
+
+            $this->call('app:scope', [
+                'name' => $this->argument('name'),
+                '--namespace' => $this->option('namespace')
+            ]);
         }
     }
 
@@ -70,7 +85,8 @@ class AppModelCommand extends AppGeneratorCommand
      */
     protected function getDefaultNamespace($rootNamespace)
     {
-    	$namespace = $this->option('namespace') ?? $this->argument('name');
+        $namespace = $this->option('namespace') ?? $this->argument('name');
+
         return $rootNamespace . '\Models' .'\\' . $namespace;
     }
 }

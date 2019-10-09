@@ -6,6 +6,20 @@ abstract class TestCase extends Orchestra\Testbench\TestCase
 {
     protected $consoleOutput;
 
+    public function setUp(): void
+    {
+        parent::setUp();
+        exec('rm -rf '.__DIR__.'/temp/*');
+    }
+
+    public function tearDown(): void
+    {
+        exec('rm -rf '.__DIR__.'/temp/*');
+        parent::tearDown();
+
+        $this->consoleOutput = '';
+    }
+
     protected function getPackageProviders($app)
     {
         return [\Hariadi\Boilerplate\GeneratorCommandServiceProvider::class];
@@ -14,20 +28,6 @@ abstract class TestCase extends Orchestra\Testbench\TestCase
     protected function getEnvironmentSetUp($app)
     {
         $app['config']->set('generator.path', __DIR__.'/temp');
-    }
-
-    public function setUp()
-    {
-        parent::setUp();
-        exec('rm -rf '.__DIR__.'/temp/*');
-    }
-
-    public function tearDown()
-    {
-        exec('rm -rf '.__DIR__.'/temp/*');
-        parent::tearDown();
-
-        $this->consoleOutput = '';
     }
 
     public function resolveApplicationConsoleKernel($app)

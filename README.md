@@ -1,5 +1,7 @@
 # Laravel Boilerplate Generator Commands
 
+[![Build Status](https://github.com//hariadi/laravel-boilerplate-generator/workflows/Laravel/badge.svg)](https://github.com/laravel-boilerplate-generator/actions)
+
 Generate Model, attribute, relation, scope trait and repository for [Laravel 5 Boilerplate](https://github.com/rappasoft/laravel-5-boilerplate) via console command
 
 ## Install

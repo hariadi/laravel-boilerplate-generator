@@ -8,7 +8,7 @@ use Hariadi\Boilerplate\Commands\AppModelCommand;
 
 class GeneratorCommandServiceProviderTest extends TestCase
 {
-    public function tearDown()
+    public function tearDown(): void
     {
         m::close();
     }

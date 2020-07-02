@@ -87,6 +87,6 @@ class AppModelCommand extends AppGeneratorCommand
     {
         $namespace = $this->option('namespace') ?? $this->argument('name');
 
-        return $rootNamespace . '\Models' .'\\' . $namespace;
+        return $rootNamespace .'\\' . $namespace;
     }
 }

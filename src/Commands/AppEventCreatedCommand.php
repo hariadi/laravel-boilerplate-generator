@@ -64,7 +64,7 @@ class AppEventCreatedCommand extends AppGeneratorCommand
         $events = $this->option('event');
 
         if (empty($events)) {
-        	$events = $this->events;
+            $events = $this->events;
         }
 
         if (parent::handle() !== false) {

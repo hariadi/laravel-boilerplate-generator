@@ -8,7 +8,7 @@ use Hariadi\Boilerplate\Commands\AppModelCommand;
 
 class GeneratorCommandServiceProviderTest extends TestCase
 {
-    public function tearDown()
+    public function tearDown(): void
     {
         m::close();
     }
@@ -26,7 +26,7 @@ class GeneratorCommandServiceProviderTest extends TestCase
 
     protected function getMockConsole(array $methods)
     {
-        $app = m::mock('Illuminate\Contracts\Foundation\Application', ['version' => '5.4']);
+        $app = m::mock('Illuminate\Contracts\Foundation\Application', ['version' => '7.2']);
         $events = m::mock('Illuminate\Contracts\Events\Dispatcher', ['dispatch' => null]);
         $console = $this->getMockBuilder('Illuminate\Console\Application')->setMethods($methods)->setConstructorArgs([
             $app, $events, 'test-version',

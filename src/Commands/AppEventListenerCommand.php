@@ -52,13 +52,13 @@ class AppEventListenerCommand extends AppGeneratorCommand
      */
     public function handle()
     {
-    	// $event = $this->option('event');
+        // $event = $this->option('event');
 
-     //    if ($event != 'created') {
-     //        $this->methods = [$event];
-     //    }
+        //    if ($event != 'created') {
+        //        $this->methods = [$event];
+        //    }
 
-     //    dd($this->methods);
+        //    dd($this->methods);
 
         parent::handle();
     }

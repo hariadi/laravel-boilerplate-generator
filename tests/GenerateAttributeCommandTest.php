@@ -7,15 +7,15 @@ class GenerateAttributeCommandTest extends TestCase
         $this->artisan('app:attribute', ['name' => 'ModelName']);
 
         //$this->assertContains('app:model <name>', $this->consoleOutput());
-        $this->assertDirectoryExists($this->getPath() .'/Models/ModelName/Traits/Attribute');
-        $this->assertFileExists($this->getPath() .'/Models/ModelName/Traits/Attribute/ModelNameAttribute.php');
+        $this->assertDirectoryExists($this->getPath() .'/ModelName/Traits/Attribute');
+        $this->assertFileExists($this->getPath() .'/ModelName/Traits/Attribute/ModelNameAttribute.php');
     }
 
     public function testAttributeWithNamespaceStratgy()
     {
     	$this->artisan('app:attribute', ['name' => 'ModelName', '--namespace' => 'Strategy']);
 
-    	$this->assertDirectoryExists($this->getPath() .'/Models/Strategy/Traits/Attribute');
-    	$this->assertFileExists($this->getPath() .'/Models/Strategy/Traits/Attribute/ModelNameAttribute.php');
+    	$this->assertDirectoryExists($this->getPath() .'/Strategy/Traits/Attribute');
+    	$this->assertFileExists($this->getPath() .'/Strategy/Traits/Attribute/ModelNameAttribute.php');
     }
 }
